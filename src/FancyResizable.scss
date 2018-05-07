@@ -1,15 +1,17 @@
 @import url("https://use.typekit.net/kws8ftd.css");
 
+$font-family: "canada-type-gibson";
+
 .FancyLinkedDraggableGrid {
   display: flex;
   border: 1px solid #333;
   color: #fff;
-  font-family: "canada-type-gibson";
+  font-family: $font-family;
 
   > .FancyResizable {
     display: flex;
     position: relative;
-    height: 100px;
+    height: 25px;
 
     &:hover > .FancyDraggableHandler {
       display: block;
@@ -43,13 +45,57 @@
         height: 100%;
       }
     }
+
+    > .TemperatureDisplay {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+
+      > .Low {
+        margin-left: 5px;
+      }
+
+      > .High {
+        margin-right: 5px;
+      }
+    }
+
+    & > .TemperatureDisplay > .Low,
+    &:last-child > .TemperatureDisplay > .High {
+      visibility: hidden;
+      width: 0;
+    }
   }
 }
 
 .TemperatureLinkedGrid {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   height: 100%;
   width: 100%;
+  font-family: $font-family;
+
+  .ExternalTemperatureDisplay {
+    position: relative;
+  }
+
+  > .LabelGroup {
+    display: flex;
+  }
+
+  > .Grid {
+    display: flex;
+
+    > .ExternalTemperatureDisplay {
+      &:first-child {
+        margin-right: 5px;
+      }
+  
+      &:last-child {
+        margin-left: 5px;
+      }
+    }
+  }
 }

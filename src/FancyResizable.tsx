@@ -8,6 +8,7 @@ export interface Props {
   onResizeStart(): boolean;
   onResizeMotion(deltaX: number): void;
   onResizeStop(): void;
+  onClick?(): void;
 }
 
 export interface State {
@@ -22,7 +23,8 @@ export default class FancyResizable extends React.Component<Props, State> {
   };
 
   onResizeStart = (e: React.DragEvent<HTMLDivElement>) => {
-    if (this.props.onResizeStart()) {
+    const { onResizeStart, onClick } = this.props;
+    if (onResizeStart()) {
       const emptyImage = new Image(0, 0);
       emptyImage.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
       e.dataTransfer.setDragImage(emptyImage, 0, 0);
@@ -33,6 +35,10 @@ export default class FancyResizable extends React.Component<Props, State> {
         resizing: true,
         lastStartX: startX
       }));
+
+      if (onClick) {
+        onClick();
+      }
     }
   }
 
@@ -55,11 +61,12 @@ export default class FancyResizable extends React.Component<Props, State> {
   }
 
   render() {
-    const { width } = this.props;
+    const { width, onClick } = this.props;
     return (
       <div
         className="FancyResizable"
-        style={{ width, minWidth: width }}
+        style={{ width }}
+        onClick={onClick}
       >
         {this.props.children}
         <FancyDraggableHandler

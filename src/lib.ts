@@ -1,0 +1,1 @@
+export const cToF = (c: number) => c * 9 / 5 + 32;
