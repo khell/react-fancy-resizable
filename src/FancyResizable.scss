@@ -1,0 +1,55 @@
+@import url("https://use.typekit.net/kws8ftd.css");
+
+.FancyLinkedDraggableGrid {
+  display: flex;
+  border: 1px solid #333;
+  color: #fff;
+  font-family: "canada-type-gibson";
+
+  > .FancyResizable {
+    display: flex;
+    position: relative;
+    height: 100px;
+
+    &:hover > .FancyDraggableHandler {
+      display: block;
+      width: 50px;
+    }
+
+    &:nth-child(2n) {
+      background: #3D5AFE;
+    }
+
+    &:nth-child(2n+1) {
+      background: #304FFE;
+    }
+
+    &:last-child > .FancyDraggableHandler {  // Last element is not draggable
+      display: none;
+    }
+
+    > .FancyDraggableHandler {
+      display: none;
+      position: absolute;
+      z-index: 10;
+      cursor: col-resize;
+      width: 10px;
+      height: 100%;
+      margin-left: auto;
+
+      > .Handle {
+        background: #333;
+        width: 1px;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.TemperatureLinkedGrid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}

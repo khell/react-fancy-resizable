@@ -29,6 +29,6 @@
   },
   "scripts": {
     "build": "webpack",
-    "start": "webpack-serve --content ./public"
+    "start": "webpack-serve --content ./public --port 8080"
   }
 }

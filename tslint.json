@@ -7,6 +7,7 @@
       "parameters",
       "statements"
     ],
+    "arrow-parens": false,
     "ban": false,
     "class-name": true,
     "comment-format": [
@@ -49,6 +50,7 @@
     "no-switch-case-fall-through": true,
     "no-trailing-whitespace": false,
     "no-unused-expression": true,
+    "object-literal-sort-keys": false,
     "one-line": [
       true,
       "check-catch",
