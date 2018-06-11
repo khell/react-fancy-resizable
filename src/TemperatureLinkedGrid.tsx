@@ -22,6 +22,7 @@ interface State {
   // widths: number[];
   // temperatures: number[];
   selectedRangeIndex?: number;
+  accumulatedDelta: number;
 }
 
 export default class TemperatureLinkedGrid extends React.Component<Props, State> {
@@ -32,7 +33,9 @@ export default class TemperatureLinkedGrid extends React.Component<Props, State>
   constructor(props: Props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      accumulatedDelta: 0
+    };
   }
 
   getTemperatureRange = () => Math.abs(this.props.minimumTemperature) + Math.abs(this.props.maximumTemperature);
@@ -57,15 +60,23 @@ export default class TemperatureLinkedGrid extends React.Component<Props, State>
   }
 
   onResizeNotify = (elementId: number, deltaX: number) => {
-    const temperatureDelta = deltaX < 0 ? -0.5 : 0.5; //Math.round(deltaX * 2) / 2;
+    const accumulatedDelta = this.state.accumulatedDelta + deltaX;
+    if (Math.abs(accumulatedDelta) < 4) {
+      this.setState(prevState => ({ ...prevState, accumulatedDelta }));
+      return;
+    } else {
+      this.setState(prevState => ({ ...prevState, accumulatedDelta: 0 }));
+    }
+
+    const temperatureDelta = accumulatedDelta < 0 ? -0.5 : 0.5;
     const { setpoints, minimumTemperature, maximumTemperature, onSetpointChange } = this.props;
     onSetpointChange(setpoints.map((e, i, a) => {
       if (i === elementId) {
         const newTemperature = e.temperature + temperatureDelta;
         const previousTemperature = i === 0 ? minimumTemperature : a[i - 1].temperature;
         const nextTemperature = i === a.length - 1 ? maximumTemperature : a[i + 1].temperature;
-        const isTemperatureExceedsPrevious = deltaX < 0 && newTemperature < previousTemperature;
-        const isTemperatureExceedsNext = deltaX > 0 && newTemperature > nextTemperature;
+        const isTemperatureExceedsPrevious = accumulatedDelta < 0 && newTemperature < previousTemperature;
+        const isTemperatureExceedsNext = accumulatedDelta > 0 && newTemperature > nextTemperature;
       
         if (!isTemperatureExceedsPrevious && !isTemperatureExceedsNext) {
           return {
@@ -81,23 +92,6 @@ export default class TemperatureLinkedGrid extends React.Component<Props, State>
   onClickNotify = (selectedRangeIndex: number) => {
     this.setState({ selectedRangeIndex });
   }
-
-  /*renderTemperatures = () => {
-    const {
-      minimumTemperature,
-      maximumTemperature,
-      displayUnit
-    } = this.props;
-
-    return this.state.temperatures.map((e, i, a) => (
-      <TemperatureDisplay
-        key={i}
-        lowValue={i === 0 ? minimumTemperature : a[i - 1]}
-        highValue={i === this.state.temperatures.length - 1 ? maximumTemperature : e}
-        displayUnit={displayUnit}
-      />
-    ));
-  }*/
 
   renderTemperaturesExternal = (isTop: boolean) => {
     const { displayUnit } = this.props;
@@ -142,7 +136,7 @@ export default class TemperatureLinkedGrid extends React.Component<Props, State>
           <ExternalTemperatureDisplay displayUnit={displayUnit}>{minimumTemperature}</ExternalTemperatureDisplay>
           <FancyPropLinkedDraggableGrid
             widths={widths}
-            stepWidth={3}
+            stepWidth={1}
             onResizeNotify={this.onResizeNotify}
             onClickNotify={this.onClickNotify}
           >
