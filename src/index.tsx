@@ -46,6 +46,6 @@ class ComponentWithInternalState extends React.Component<{}, State> {
 }
 
 ReactDOM.render(
-  <ComponentWithInternalState />,
+  <ComponentWithInternalState /> as any,
   document.getElementById('app')
 );
