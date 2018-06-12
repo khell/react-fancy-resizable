@@ -61,12 +61,6 @@ $font-family: "canada-type-gibson";
         margin-right: 5px;
       }
     }
-
-    & > .TemperatureDisplay > .Low,
-    &:last-child > .TemperatureDisplay > .High {
-      visibility: hidden;
-      width: 0;
-    }
   }
 }
 
