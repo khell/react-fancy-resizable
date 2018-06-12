@@ -72,29 +72,35 @@ $font-family: "canada-type-gibson";
 
 .TemperatureLinkedGrid {
   display: flex;
-  flex-direction: column;
   height: 100%;
   width: 100%;
   font-family: $font-family;
 
-  .ExternalTemperatureDisplay {
+  > .ExternalTemperatureDisplay {
     position: relative;
-  }
-
-  > .LabelGroup {
     display: flex;
-  }
+    align-items: center;
 
+    &:first-child {
+      margin-right: 5px;
+    }
+
+    &:last-child {
+      margin-left: 5px;
+    }
+  }
+  
   > .Grid {
     display: flex;
+    flex-direction: column;
+    
+    > .LabelGroup {
+      display: flex;
+      position: relative;
+      height: 20px;
 
-    > .ExternalTemperatureDisplay {
-      &:first-child {
-        margin-right: 5px;
-      }
-  
-      &:last-child {
-        margin-left: 5px;
+      > .ExternalTemperatureDisplay {
+        position: absolute;
       }
     }
   }

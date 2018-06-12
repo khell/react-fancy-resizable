@@ -129,11 +129,11 @@ export default class TemperatureLinkedGrid extends React.Component<Props, State>
     const widths = this.buildWidthsFromTemperatureRange();
     return (
       <div className="TemperatureLinkedGrid">
-        <div className="LabelGroup">
-          {this.renderTemperaturesExternal(true)}
-        </div>
+        <ExternalTemperatureDisplay displayUnit={displayUnit}>{minimumTemperature}</ExternalTemperatureDisplay>
         <div className="Grid">
-          <ExternalTemperatureDisplay displayUnit={displayUnit}>{minimumTemperature}</ExternalTemperatureDisplay>
+          <div className="LabelGroup">
+            {this.renderTemperaturesExternal(true)}
+          </div>
           <FancyPropLinkedDraggableGrid
             widths={widths}
             stepWidth={1}
@@ -142,11 +142,11 @@ export default class TemperatureLinkedGrid extends React.Component<Props, State>
           >
             {this.renderTemperatureInternalThreshold()}
           </FancyPropLinkedDraggableGrid>
-          <ExternalTemperatureDisplay displayUnit={displayUnit}>{maximumTemperature}</ExternalTemperatureDisplay>
+          <div className="LabelGroup">
+            {this.renderTemperaturesExternal(false)}
+          </div>
         </div>
-        <div className="LabelGroup">
-          {this.renderTemperaturesExternal(false)}
-        </div>
+        <ExternalTemperatureDisplay displayUnit={displayUnit}>{maximumTemperature}</ExternalTemperatureDisplay>
       </div>
     );
   }
