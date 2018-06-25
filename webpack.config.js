@@ -2,10 +2,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: "./src/index.tsx",
+  entry: "./src/example.tsx",
   output: {
-    filename: "bundle.js",
-    path: __dirname + "/dist"
+    filename: "index.js",
+    path: __dirname + "/dist",
+    library: 'reactFancyResizable'
   },
 
   // Enable sourcemaps for debugging webpack's output.

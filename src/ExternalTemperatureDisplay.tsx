@@ -25,13 +25,13 @@ export default class ExternalTemperatureDisplay extends React.Component<Props, S
 
   componentDidMount() {
     setTimeout(() => {  // componentDidMount can be executed before the real DOM has finished drawing
-      const offsetWidth = this.rootRef.current.offsetWidth;
+      const offsetWidth = this.rootRef.current!.offsetWidth;
       this.setState(prevState => ({ ...prevState, offsetWidth }));
     }, 0);
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    const offsetWidth = this.rootRef.current.offsetWidth;
+    const offsetWidth = this.rootRef.current!.offsetWidth;
     if (prevState.offsetWidth !== offsetWidth) {
       this.setState({ offsetWidth });
     }
@@ -39,7 +39,7 @@ export default class ExternalTemperatureDisplay extends React.Component<Props, S
 
   render() {
     const { displayUnit, children: value, offset: initialOffset } = this.props;
-    const offset = initialOffset - this.state.offsetWidth / 2;
+    const offset = initialOffset ? initialOffset - this.state.offsetWidth / 2 : undefined;
     const toCorrectUnit = (v: number) => displayUnit === 'F' ? cToF(value).toFixed(2) : value.toFixed(1);
     return (
       <div ref={this.rootRef} className="ExternalTemperatureDisplay" style={{ left: offset }}>

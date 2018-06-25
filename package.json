@@ -1,8 +1,8 @@
 {
   "name": "react-fancy-resizable",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Fancy resizable component and interlinked component grid for React.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "Cameron Yan <git@khell.org>",
   "license": "MIT",
   "devDependencies": {
@@ -28,7 +28,7 @@
     "react-dom": "^16.4.0"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "tsc",
     "start": "webpack-serve --content ./public --port 8080"
   }
 }
