@@ -119,7 +119,7 @@ export default class TemperatureLinkedGrid extends React.Component<Props, State>
     }
 
     return setpoints.map((e, i) => i === selectedRangeIndex
-      ? <TemperatureDisplay lowValue={e.lowThreshold} highValue={e.highThreshold} />
+      ? <TemperatureDisplay key={i} lowValue={e.lowThreshold} highValue={e.highThreshold} />
       : undefined
     );
   }
