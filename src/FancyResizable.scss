@@ -98,4 +98,21 @@ $font-family: "canada-type-gibson";
       }
     }
   }
+  .FancyLinkedDraggableGrid {
+    .FancyResizable {
+      &:hover, &-selected {
+        cursor: pointer;
+        background: #3D5AFE !important;
+      }
+
+      &:nth-child(2n) {
+        background: grey;
+      }
+  
+      &:nth-child(2n+1) {
+        background: darken(grey, 5%);
+      }
+
+    }
+  }
 }

@@ -96,6 +96,7 @@ export default class FancyLinkedDraggableGrid extends React.Component<Props, Sta
           <FancyResizable
             key={i}
             width={e.width}
+            selected={false}
             onResizeStart={this.onResizeStart.bind(this, i)}
             onResizeMotion={this.onResizeMotion.bind(this, i)}
             onResizeStop={this.onResizeStop.bind(this, i)}

@@ -20,6 +20,7 @@ export interface Props {
    * Default: 1px
    */
   stepWidth?: number;
+  selectedIndex?: number;
   onResizeNotify(elementId: number, deltaX: number): void;
   onClickNotify?(elementId: number): void;
 }
@@ -46,7 +47,7 @@ export default class FancyPropLinkedDraggableGrid extends React.Component<Props>
   }
 
   render() {
-    const { widths, children, onClickNotify } = this.props;
+    const { widths, children, onClickNotify, selectedIndex } = this.props;
     const totalWidth = widths.reduce((p, c) => p + c);
     return (
       <div className="FancyLinkedDraggableGrid" style={{ width: totalWidth }}>
@@ -54,6 +55,7 @@ export default class FancyPropLinkedDraggableGrid extends React.Component<Props>
           <FancyResizable
             key={i}
             width={e}
+            selected={i === selectedIndex}
             onResizeStart={this.onResizeStart.bind(this, i)}
             onResizeMotion={this.onResizeMotion.bind(this, i)}
             onResizeStop={this.onResizeStop.bind(this, i)}

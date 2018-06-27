@@ -139,6 +139,7 @@ export default class TemperatureLinkedGrid extends React.Component<Props, State>
             stepWidth={1}
             onResizeNotify={this.onResizeNotify}
             onClickNotify={this.onClickNotify}
+            selectedIndex={this.state.selectedRangeIndex}
           >
             {this.renderTemperatureInternalThreshold()}
           </FancyPropLinkedDraggableGrid>

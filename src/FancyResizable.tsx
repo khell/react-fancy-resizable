@@ -5,6 +5,7 @@ import './FancyResizable.scss';
 export interface Props {
   children: React.ReactNode;
   width: number; 
+  selected: boolean;
   onResizeStart(): boolean;
   onResizeMotion(deltaX: number): void;
   onResizeStop(): void;
@@ -61,10 +62,10 @@ export default class FancyResizable extends React.Component<Props, State> {
   }
 
   render() {
-    const { width, onClick } = this.props;
+    const { width, onClick, selected } = this.props;
     return (
       <div
-        className="FancyResizable"
+        className={`FancyResizable ${selected ? 'FancyResizable-selected' : ''}`}
         style={{ width }}
         onClick={onClick}
       >
