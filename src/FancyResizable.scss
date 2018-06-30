@@ -116,3 +116,12 @@ $font-family: "canada-type-gibson";
     }
   }
 }
+
+.BlankCheckeredPattern{
+  background: linear-gradient(45deg, rgba(0,0,0,0.0980392) 25%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, rgba(0,0,0,0.0980392) 75%, rgba(0,0,0,0.0980392) 0), linear-gradient(45deg, rgba(0,0,0,0.0980392) 25%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, rgba(0,0,0,0.0980392) 75%, rgba(0,0,0,0.0980392) 0), rgb(255, 255, 255);
+  background-repeat: repeat, repeat;
+  background-position: 0 0, 10px 10px;
+  background-origin: padding-box, padding-box;
+  background-clip: border-box, border-box;
+  background-size: 20px 20px, 20px 20px;
+}
