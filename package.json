@@ -1,6 +1,6 @@
 {
   "name": "react-fancy-resizable",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Fancy resizable component and interlinked component grid for React.",
   "main": "dist/index.js",
   "author": "Cameron Yan <git@khell.org>",
